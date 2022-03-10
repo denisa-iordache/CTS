@@ -38,3 +38,4 @@ public class Main {
 	}
 
 }
+//mongodb://127.0.0.1:27017 -> se pune in MongoDB
