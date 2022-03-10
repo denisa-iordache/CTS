@@ -1,11 +1,17 @@
-package ro.ase.acs.sql;
+package ro.ase.acs.modified;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import eu.ase.acs.contacts.Operation;
+import org.bson.Document;
+
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
+import ro.ase.acs.contacts.Operation;
 
 public class InsertOperation implements Operation{
 
@@ -27,6 +33,20 @@ public class InsertOperation implements Operation{
 		preparedStatement.close();
 		
 		connection.commit();
+		
+	}
+
+	@Override
+	public void compute(MongoCollection<Document> collection, MongoDatabase mongoDb, MongoClient mongoClient) {
+		Document employee1 = new Document().append("name", "Popescu Ion").
+				append("address", "Bucharest").append("salary", 4000);
+		
+		//collection = mongoDb.getCollection("employees");
+		collection.insertOne(employee1);
+		
+		Document employee2 = new Document().append("name", "Ionescu Vasile").
+				append("salary", 4500);
+		collection.insertOne(employee2);
 		
 	}
 
