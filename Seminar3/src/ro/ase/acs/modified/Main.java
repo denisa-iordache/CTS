@@ -10,7 +10,7 @@ public class Main {
 		Operation operation = (Operation) Class.forName("ro.ase.acs.modified.ReadOperation").getDeclaredConstructor()
 				.newInstance();
 		Orchestrator orchestrator = new Orchestrator(operation);
-		orchestrator.executeNOSQL(); //executeSQL()
+		orchestrator.executeNOSQL();
 		//orchestrator.executeSQL();
 	}
 }
