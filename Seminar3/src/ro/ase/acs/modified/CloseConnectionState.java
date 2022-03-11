@@ -10,16 +10,18 @@ import ro.ase.acs.contacts.ConnectionState;
 public class CloseConnectionState implements ConnectionState {
 
 	@Override
-	public void close(Connection connection) throws SQLException {
+	public Connection setSql(Connection connection) throws SQLException {
 		connection.close();
 		System.out.println("Conexiune inchisa!");
+		return connection;
 
 	}
 
 	@Override
-	public void close(MongoClient mongoClient) {
+	public MongoClient setNoSql(MongoClient mongoClient) {
 		mongoClient.close();
 		System.out.println("Conexiune inchisa!");
+		return mongoClient;
 
 	}
 

@@ -9,6 +9,9 @@ import ro.ase.acs.contacts.Reader;
 public class Main {
 
 	public static void main(String[] args) throws SQLException, Exception {
+		ConnectionState connectionOpen = (ConnectionState) Class.forName("ro.ase.acs.modified.OpenConnectionState")
+				.getDeclaredConstructor().newInstance();
+
 		Reader reader = (Reader) Class.forName("ro.ase.acs.modified.ConsoleReader").getDeclaredConstructor()
 				.newInstance();
 
@@ -22,8 +25,9 @@ public class Main {
 		ConnectionState connectionState = (ConnectionState) Class.forName("ro.ase.acs.modified.CloseConnectionState")
 				.getDeclaredConstructor().newInstance();
 
-		Orchestrator orchestrator = new Orchestrator(operation, reader, connectionState);
-		// orchestrator.executeNOSQL();
+		Orchestrator orchestrator = new Orchestrator(operation, reader, connectionState, connectionOpen);
+		//orchestrator.executeNOSQL();
 		orchestrator.executeSQL();
 	}
+	//mongodb://127.0.0.1:27017
 }

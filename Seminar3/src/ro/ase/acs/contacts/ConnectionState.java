@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import com.mongodb.MongoClient;
 
 public interface ConnectionState {
-	void close(Connection connection) throws SQLException;
+	Connection setSql(Connection connection) throws SQLException, ClassNotFoundException;
 
-	void close(MongoClient mongoClient);
+	MongoClient setNoSql(MongoClient mongoClient);
 }
